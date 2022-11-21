@@ -2,6 +2,9 @@ package com.sda.David.bookmanagement.meniu;
 
 public enum UserOption {
    CREATE_AUTHOR(1,"Create author"),
+    SHOW_ALL_AUTHORS(2, "Display all authors"),
+    UPDATE_AUTHOR(3, "Update author"),
+    DELETE_AUTHOR(4,"Delete author"),
    EXIT(99,"Exit"),
    UNKNOWN(100,"Unknown option");
 
@@ -14,10 +17,12 @@ public enum UserOption {
     }
 
     public int getNumericOption() {
+
         return numericOption;
     }
 
     public String getDisplayValue() {
+
         return displayValue;
     }
 

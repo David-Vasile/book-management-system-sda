@@ -2,8 +2,9 @@ package com.sda.David.bookmanagement.controller;
 
 import com.sda.David.bookmanagement.service.AuthorService;
 import com.sda.David.bookmanagement.service.exceptions.EntityNotFoundException;
+import com.sda.David.bookmanagement.service.exceptions.InvalidParameterException;
 
-import java.security.InvalidParameterException;
+
 import java.util.Scanner;
 
 public class AuthorController {
@@ -45,6 +46,24 @@ public class AuthorController {
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Provided author id is not a number");
+        } catch (Exception e) {
+            System.out.println("Internal server error");
+        }
+    }
+
+
+    public void deleteAuthor() {
+        try {
+            System.out.println("Please insert author id!");
+            int authorId = Integer.parseInt(scanner.nextLine());
+            authorService.deleteAuthor(authorId);
+            System.out.println("Author with id " + authorId + " was successfully deleted");
+        } catch (NumberFormatException e) {
+            System.out.println("Provided author id is not a number!");
+        } catch (InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println("Internal server error");
         }
