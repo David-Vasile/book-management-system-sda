@@ -13,6 +13,7 @@ public class BaseRepositoryImpl<T> implements BaseRepository<T> {
     private Class<T> entityClass;
 
     public BaseRepositoryImpl(Class<T> entityClass) {
+
         this.entityClass = entityClass;
     }
 
@@ -80,4 +81,16 @@ public class BaseRepositoryImpl<T> implements BaseRepository<T> {
             }
         }
     }
+
+
+    @Override
+    public List<T> findAll() {
+        try (Session session = SessionManager.getSessionFactory().openSession()) {
+            return session.createQuery("from " + entityClass.getName(), entityClass).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 }
