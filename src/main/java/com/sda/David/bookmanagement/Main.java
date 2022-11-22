@@ -2,13 +2,20 @@ package com.sda.David.bookmanagement;
 
 import com.sda.David.bookmanagement.Repository.AuthorRepositoryImpl;
 import com.sda.David.bookmanagement.Repository.BookRepositoryImpl;
+import com.sda.David.bookmanagement.Repository.BookReviewRepository;
+import com.sda.David.bookmanagement.Repository.BookReviewRepositoryImpl;
 import com.sda.David.bookmanagement.controller.AuthorController;
 import com.sda.David.bookmanagement.controller.BookController;
+import com.sda.David.bookmanagement.controller.BookReviewController;
 import com.sda.David.bookmanagement.meniu.UserOption;
+import com.sda.David.bookmanagement.model.Review;
 import com.sda.David.bookmanagement.service.AuthorServiceImpl;
+import com.sda.David.bookmanagement.service.BookReviewServiceImpl;
 import com.sda.David.bookmanagement.service.BookServiceImpl;
 import com.sda.David.bookmanagement.utils.SessionManager;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +24,8 @@ public class Main {
         SessionManager.getSessionFactory();
         AuthorController authorController = new AuthorController(new AuthorServiceImpl(new AuthorRepositoryImpl()));
         BookController bookController = new BookController(new BookServiceImpl(new BookRepositoryImpl(), new AuthorRepositoryImpl()));
+        BookReviewController reviewController = new BookReviewController(new BookReviewServiceImpl(new BookReviewRepositoryImpl(), new BookRepositoryImpl()));
+
         Scanner scanner = new Scanner(System.in);
 
         UserOption userOption;
